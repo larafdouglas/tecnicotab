@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{%block content%}
+
+<h3>Levantamento Topografico Taqueométrico</h3>
+<p>Método da irradiação - Obra São Joaquim</p>
+
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+    
+      <th scope="col">Ponto</th>
+      <th scope="col">Fio superior (mm)</th>
+      <th scope="col">Fio médio (mm) </th>
+      <th scope="col">Fio inferior (mm)</th>
+      <th scope="col">Ângulo vertical</th>
+      <th scope="col">Ângulo horizontal</th>
+      <th scope="col">DH (m)</th>
+       <th scope="col">DN</th>
+      <th scope="col">Deletar</th>
+      <th scope="col">Editar</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+
+{% for i in pontos %}
+    <tr>
+      <th scope="row">{{ i.ponto| int }}</th>
+      <td>{{ i.mira_superior| int }}</td>
+      <td>{{i.mira_medio| int}}</td>
+      <td>{{i.mira_inferior| int}}</td>
+      <td>{{i.ang_vertical_g| int}}&ring;{{i.ang_vertical_m | int}}&apos;{{i.ang_vertical_s| int}}&quot;</td>
+      <td>{{i.ang_horizontal_g| int}}&ring;{{i.ang_horizontal_m| int}}&apos;{{i.ang_horizontal_s| int}}&quot;</td>
+      <td>{{'%0.3f' % i.dist_horizontal| float}}</td>
+      <td>nada ainda</td>
+      <td><a class="btn btn-danger" href="#" role="button" data-toggle="modal" data-target="#exampleModal{{i.id}}">Excluir</a></td>
+      <td><button type="button" class="btn btn-warning">Editar</button></td>
+
+      
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+
+
+                            {% for i in pontos %}
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirmação de exclusão</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    Você está prestes a excluir o Ponto {{i.ponto}}.
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <a class="btn btn-danger" href="{{ url_for('deletepoint', point_id=i.id) }}" role="button">Excluir</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            {% endfor %}
+
+{% endblock %}
+

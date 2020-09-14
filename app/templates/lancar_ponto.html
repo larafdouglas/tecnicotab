@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class='row'>
+
+
+    <div class="card col-md-12 " style="width: 18rem;">
+        <div class="card-body">
+            <h2>Lançar Pontos</h2>
+            <div class='card-row'>
+            <span class="badge badge-pill badge-primary">Obra: {{obra.nome_obra}} </span>
+            <span class="badge badge-pill badge-primary">Ponto: {{obra.ponto}} </span>
+            <span class="badge badge-warning">Taqueometria</span>
+            <span class="badge badge-warning">Irradiação</span><br>
+
+            </div>
+            <br>
+
+
+  <form action="" method="post">
+    {{ form.hidden_tag() }}
+     <div class="form-row">
+
+
+        <div class="col-md-2 col-sm-12">
+            {{ form.mira_superior(class='form-control',placeholder='Fio superior') }}<br>
+             {% for error in form.mira_superior.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+            {{ form.mira_medio(class='form-control',placeholder='Fio médio') }}<br>
+            {% for error in form.mira_medio.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+            {{ form.mira_inferior(class='form-control',placeholder='Fio inferior') }}<br>
+            {% for error in form.mira_inferior.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+            {{ form.ang_vertical_g(class='form-control',placeholder='Ângulo vert.º') }}<br>
+            {% for error in form.ang_vertical_g.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+            {{ form.ang_vertical_m(class='form-control',placeholder='Ângulo vert. (min.)') }}
+            {% for error in form.ang_vertical_m.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+            {{ form.ang_vertical_s(class='form-control',placeholder='Ângulo vert. (seg.)') }}<br>
+            {% for error in form.ang_vertical_s.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+            {{ form.ang_horizontal_g(class='form-control',placeholder='Ângulo horiz.º') }}
+            {% for error in form.ang_horizontal_g.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+        <div class="col-md-2 col-sm-12">
+            {{ form.ang_horizontal_m(class='form-control',placeholder='Ângulo horiz.. (min.)') }}
+            {% for error in form.ang_horizontal_m.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+
+
+        <div class="col-md-2 col-sm-12">
+            {{ form.ang_horizontal_s(class='form-control',placeholder='Ângulo horiz. (seg.)') }}
+            {% for error in form.ang_horizontal_s.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+    </div>
+<br>
+<div class="form-row">
+        <p>{{ form.submit(class='btn btn-primary') }}</p>
+
+</div>
+
+</form>
+</div>
+</div>
+</div>
+
+{% endblock %}
+

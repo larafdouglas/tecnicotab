@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{%block content%}
+
+
+     <div class='row'>
+
+            <div class="card col-md-12" style="width: 18rem;">
+
+                <div class="card-body">
+                <h5 class="card-title">Topo<b>Tab</b></h5>
+                <p class="card-text">Você está no módulo Topografia em <b>Tabelas</b>, Topo<b>Tab.</b></h5></p>
+                	<h6>Seja bem vindo(a), USUARIO.</h6></p>
+
+                </div>
+            </div>
+     </div>
+
+
+
+     <div class='row'>
+		<div class="card col-md-12" style="width: 18rem;">
+		<div class="card-body">
+		<h5 class="card-title">Taqueometria e irradiação</h5>
+		<p class="card-text">Esta seção se destina a levantamentos topográficos planialtimétricos taqueométricos realizados por irradiação.<br>
+		Os cálculos foram programados considerando o ângulo alfa, ou seja, o ângulo vertical igual a zero quando a luneta está totalmente na horizontal.<br>
+		<span class="badge badge-primary">levantamento</span>
+		<span class="badge badge-warning">taqueometria</span>
+		<span class="badge badge-warning">irradiação</span>
+		</p>
+
+				<div class="btn-group">
+
+				<a class="btn btn-primary btn-lg" href="{{url_for('lancar_obra')}}" role="button">Novo levantamento</a>
+
+
+				<div class="dropdown">
+				<button type="button" class="btn btn-primary btn-lg  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    Lançar Pontos
+				  </button>
+			  	<div class="dropdown-menu">
+				  	{% for i in obras %}
+			    	<a class="dropdown-item" href="{{ url_for('lancar_ponto', obra_id=i.id) }}">{{ i.nome_obra }}</a>
+				    {% endfor %}
+				 </div>
+				</div>
+
+
+
+				 <div class="dropdown">
+				 <button class="btn btn-warning btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    Consultar Pontos
+				  </button>
+					  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					  		{% for i in obras %}
+						    <a class="dropdown-item" href="{{ url_for('tabela', obra_id=i.id) }}">{{ i.nome_obra }}</a>
+						    {% endfor %}
+					  </div>
+				</div>
+
+
+				<div class="dropdown">
+                  <button type="button" class="btn btn-danger btn-lg  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Excluir levantamento
+                  </button>
+                  <div class="dropdown-menu">
+                    {% for i in obras %}
+                        <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal{{i.id}}"href='#'>{{ i.nome_obra}}</a>
+					{% endfor %}
+				</div>
+			</div>
+
+
+											{% for i in obras %}
+											<!-- Modal -->
+											<div class="modal fade" id="exampleModal{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											  <div class="modal-dialog">
+											    <div class="modal-content">
+											      <div class="modal-header">
+											        <h5 class="modal-title" id="exampleModalLabel">Confirmação de exclusão</h5>
+											        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											          <span aria-hidden="true">&times;</span>
+											        </button>
+											      </div>
+											      <div class="modal-body">
+											        Você está prestes a excluir o levantamento {{i.nome_obra}}.
+											      </div>
+											      <div class="modal-footer">
+											        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+											        <a class="btn btn-danger" href="{{ url_for('delete', obra_id=i.id) }}" role="button">Excluir</a>
+											      </div>
+											    </div>
+											  </div>
+											</div>
+											{% endfor %}
+
+
+
+
+
+
+
+			</div>
+		</div>
+		</div>
+
+	</div>
+
+
+
+
+
+
+
+{%endblock%}

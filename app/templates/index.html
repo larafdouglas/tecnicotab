@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{%block content%}
+
+
+
+
+      <div class='row'>
+
+            <div class="card col-md-3 d-none d-lg-block" style="width: 18rem;">
+
+                <div class="card-body">
+                    {% if current_user.is_anonymous %}
+                        <h5 class="card-title">Bem vindo, Visitante</h5>
+                        <p class="card-text">Conheça e experimente a plataforma TécnicoTab<b>Table</b>,</p>
+                        <a href="{{url_for('register')}}" class="btn btn-primary btn-lg active">Cadastre-se</a>
+                        {% else %}
+                            <h5 class="card-title">Bem vindo, {{current_user.username}}</h5>
+                            <p class="card-text">Está pronto para iniciar os trabalhos?</p>
+                            <a href="{{url_for('topotab')}}" class="btn btn-primary btn-lg active">Vamos lá</a>
+                        {% endif %}
+                </div>
+            </div>
+                
+            <div class="card col-md-9" style="width: 18rem;">
+
+                <div class="card-body">
+                <h5 class="card-title">Como pensamos</h5>
+                <p class="card-text">Acreditamos que o Profissional Técnico precisa participar de cada etapa de um levantamento topográfico. A automatização ajuda, mas jamais substituirá o profissional da área topográfica.</p>
+                
+                </div>
+            </div>
+
+        </div>
+
+        <div class='row'>
+            <div class="card col-md-12 1 col-11 mx-auto" style="width: 18rem;">
+
+                <div class="card-body">
+                {%block card%}
+                <h5 class="card-title">O aprendizado importa</h5>
+                <p class="card-text">É importante que você alimente cada etapa do processo É necessário dominar o conteúdo. É pensando nisso que o TécnicoTab foi projetado.</p>
+                
+
+
+
+
+
+                {%endblock%}
+                </div>
+            </div>
+        </div>
+
+       </div>   
+ {% endblock %}
